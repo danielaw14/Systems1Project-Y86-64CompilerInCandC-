@@ -1,0 +1,76 @@
+0x000:                      |  .pos 0
+                            |     # initialize registers
+0x000: 30f00100000000000000 |     irmovq 1, %rax
+0x00a: 30f10000000000000000 |     irmovq 0, %rcx
+0x014: 30f20000000000000000 |     irmovq 0, %rdx
+0x01e: 30f30000000000000000 |     irmovq 0, %rbx
+0x028: 30f40000000000000000 |     irmovq 0, %rsp
+0x032: 30f50000000000000000 |     irmovq 0, %rbp
+0x03c: 30f60000000000000000 |     irmovq 0, %rsi
+0x046: 30f70000000000000000 |     irmovq 0, %rdi
+0x050: 30f80000000000000000 |     irmovq 0, %r8
+0x05a: 30f90000000000000000 |     irmovq 0, %r9
+0x064: 30fa0000000000000000 |     irmovq 0, %r10
+0x06e: 30fb0000000000000000 |     irmovq 0, %r11
+0x078: 30fc0000000000000000 |     irmovq 0, %r12
+0x082: 30fd0000000000000000 |     irmovq 0, %r13
+0x08c: 30fe0000000000000000 |     irmovq 0, %r14
+                            | 
+                            |     #initialize registers (starting with %rbx) to the values 2 through 15
+                            |     #do not use irmovq instructions
+                            | 
+0x096: 6001                 |     addq %rax, %rcx
+0x098: 6001                 |     addq %rax, %rcx
+0x09a: 6012                 |     addq %rcx, %rdx
+0x09c: 6002                 |     addq %rax, %rdx
+0x09e: 6023                 |     addq %rdx, %rbx
+0x0a0: 6003                 |     addq %rax, %rbx
+0x0a2: 6034                 |     addq %rbx, %rsp
+0x0a4: 6004                 |     addq %rax, %rsp
+0x0a6: 6045                 |     addq %rsp, %rbp
+0x0a8: 6005                 |     addq %rax, %rbp
+0x0aa: 6056                 |     addq %rbp, %rsi
+0x0ac: 6006                 |     addq %rax, %rsi
+0x0ae: 6067                 |     addq %rsi, %rdi
+0x0b0: 6007                 |     addq %rax, %rdi
+0x0b2: 6078                 |     addq %rdi, %r8
+0x0b4: 6008                 |     addq %rax, %r8
+0x0b6: 6089                 |     addq %r8, %r9
+0x0b8: 6009                 |     addq %rax, %r9
+0x0ba: 609a                 |     addq %r9, %r10
+0x0bc: 600a                 |     addq %rax, %r10
+0x0be: 60ab                 |     addq %r10, %r11
+0x0c0: 600b                 |     addq %rax, %r11
+0x0c2: 60bc                 |     addq %r11, %r12
+0x0c4: 600c                 |     addq %rax, %r12
+0x0c6: 60cd                 |     addq %r12, %r13
+0x0c8: 600d                 |     addq %rax, %r13
+0x0ca: 60de                 |     addq %r13, %r14
+0x0cc: 600e                 |     addq %rax, %r14
+                            | 
+                            |     #now, reverse the values in the registers
+                            |     #do not use irmovq instructions
+                            | 
+0x0ce: 630e                 |     xorq %rax, %r14
+0x0d0: 63e0                 |     xorq %r14, %rax
+0x0d2: 630e                 |     xorq %rax, %r14
+0x0d4: 631d                 |     xorq %rcx, %r13
+0x0d6: 63d1                 |     xorq %r13, %rcx
+0x0d8: 631d                 |     xorq %rcx, %r13
+0x0da: 632c                 |     xorq %rdx, %r12
+0x0dc: 63c2                 |     xorq %r12, %rdx
+0x0de: 632c                 |     xorq %rdx, %r12
+0x0e0: 633b                 |     xorq %rbx, %r11
+0x0e2: 63b3                 |     xorq %r11, %rbx
+0x0e4: 633b                 |     xorq %rbx, %r11
+0x0e6: 634a                 |     xorq %rsp, %r10
+0x0e8: 63a4                 |     xorq %r10, %rsp
+0x0ea: 634a                 |     xorq %rsp, %r10
+0x0ec: 6359                 |     xorq %rbp, %r9
+0x0ee: 6395                 |     xorq %r9, %rbp
+0x0f0: 6359                 |     xorq %rbp, %r9
+0x0f2: 6368                 |     xorq %rsi, %r8
+0x0f4: 6386                 |     xorq %r8, %rsi
+0x0f6: 6368                 |     xorq %rsi, %r8
+                            | 
+0x0f8: 00                   |     halt

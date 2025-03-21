@@ -1,0 +1,44 @@
+.pos 0
+        irmovq stack, %rsp
+        irmovq list, %rdi
+        mrmovq count, %rsi
+        irmovq $0, %rax
+        call addpos
+        halt
+
+addpos:
+        irmovq $0, %rcx
+        rrmovq %rdi, %r8
+addloop:
+        rrmovq %rcx, %r9
+        subq %rsi, %r9
+        jge finished
+        mrmovq (%r8), %r10
+        irmovq $0, %r11
+        subq %r11, %r10
+        jl drop
+        addq %r10, %rax
+drop:
+        irmovq $8, %r12
+        addq %r12, %r8
+        irmovq $1, %r13
+        addq %r13, %rcx
+        jmp addloop
+finished: 
+        ret
+
+.pos 0x200
+count:  .quad 0xa
+list:   .quad -2
+        .quad 4
+        .quad 5
+        .quad -23
+        .quad 17
+        .quad 22
+        .quad -11
+        .quad 8
+        .quad 9
+        .quad 12
+.pos 0x300
+stack:  .quad 0
+

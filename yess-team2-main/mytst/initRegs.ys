@@ -1,0 +1,76 @@
+ .pos 0
+    # initialize registers
+    irmovq 1, %rax
+    irmovq 0, %rcx
+    irmovq 0, %rdx
+    irmovq 0, %rbx
+    irmovq 0, %rsp
+    irmovq 0, %rbp
+    irmovq 0, %rsi
+    irmovq 0, %rdi
+    irmovq 0, %r8
+    irmovq 0, %r9
+    irmovq 0, %r10
+    irmovq 0, %r11
+    irmovq 0, %r12
+    irmovq 0, %r13
+    irmovq 0, %r14
+
+    #initialize registers (starting with %rbx) to the values 2 through 15
+    #do not use irmovq instructions
+
+    addq %rax, %rcx
+    addq %rax, %rcx
+    addq %rcx, %rdx
+    addq %rax, %rdx
+    addq %rdx, %rbx
+    addq %rax, %rbx
+    addq %rbx, %rsp
+    addq %rax, %rsp
+    addq %rsp, %rbp
+    addq %rax, %rbp
+    addq %rbp, %rsi
+    addq %rax, %rsi
+    addq %rsi, %rdi
+    addq %rax, %rdi
+    addq %rdi, %r8
+    addq %rax, %r8
+    addq %r8, %r9
+    addq %rax, %r9
+    addq %r9, %r10
+    addq %rax, %r10
+    addq %r10, %r11
+    addq %rax, %r11
+    addq %r11, %r12
+    addq %rax, %r12
+    addq %r12, %r13
+    addq %rax, %r13
+    addq %r13, %r14
+    addq %rax, %r14
+
+    #now, reverse the values in the registers
+    #do not use irmovq instructions
+
+    xorq %rax, %r14
+    xorq %r14, %rax
+    xorq %rax, %r14
+    xorq %rcx, %r13
+    xorq %r13, %rcx
+    xorq %rcx, %r13
+    xorq %rdx, %r12
+    xorq %r12, %rdx
+    xorq %rdx, %r12
+    xorq %rbx, %r11
+    xorq %r11, %rbx
+    xorq %rbx, %r11
+    xorq %rsp, %r10
+    xorq %r10, %rsp
+    xorq %rsp, %r10
+    xorq %rbp, %r9
+    xorq %r9, %rbp
+    xorq %rbp, %r9
+    xorq %rsi, %r8
+    xorq %r8, %rsi
+    xorq %rsi, %r8
+
+    halt

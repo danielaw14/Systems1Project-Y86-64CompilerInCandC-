@@ -1,0 +1,43 @@
+0x000:                      | .pos 0
+0x000: 30f40003000000000000 |         irmovq stack, %rsp
+0x00a: 30f70802000000000000 |         irmovq list, %rdi
+0x014: 506f0002000000000000 |         mrmovq count, %rsi
+0x01e: 30f00000000000000000 |         irmovq $0, %rax
+0x028: 803200000000000000   |         call addpos
+0x031: 00                   |         halt
+                            | 
+0x032:                      | addpos:
+0x032: 30f10000000000000000 |         irmovq $0, %rcx
+0x03c: 2078                 |         rrmovq %rdi, %r8
+0x03e:                      | addloop:
+0x03e: 2019                 |         rrmovq %rcx, %r9
+0x040: 6169                 |         subq %rsi, %r9
+0x042: 758d00000000000000   |         jge finished
+0x04b: 50a80000000000000000 |         mrmovq (%r8), %r10
+0x055: 30fb0000000000000000 |         irmovq $0, %r11
+0x05f: 61ba                 |         subq %r11, %r10
+0x061: 726c00000000000000   |         jl drop
+0x06a: 60a0                 |         addq %r10, %rax
+0x06c:                      | drop:
+0x06c: 30fc0800000000000000 |         irmovq $8, %r12
+0x076: 60c8                 |         addq %r12, %r8
+0x078: 30fd0100000000000000 |         irmovq $1, %r13
+0x082: 60d1                 |         addq %r13, %rcx
+0x084: 703e00000000000000   |         jmp addloop
+0x08d:                      | finished: 
+0x08d: 90                   |         ret
+                            | 
+0x200:                      | .pos 0x200
+0x200: 0a00000000000000     | count:  .quad 0xa
+0x208: feffffffffffffff     | list:   .quad -2
+0x210: 0400000000000000     |         .quad 4
+0x218: 0500000000000000     |         .quad 5
+0x220: e9ffffffffffffff     |         .quad -23
+0x228: 1100000000000000     |         .quad 17
+0x230: 1600000000000000     |         .quad 22
+0x238: f5ffffffffffffff     |         .quad -11
+0x240: 0800000000000000     |         .quad 8
+0x248: 0900000000000000     |         .quad 9
+0x250: 0c00000000000000     |         .quad 12
+0x300:                      | .pos 0x300
+0x300: 0000000000000000     | stack:  .quad 0

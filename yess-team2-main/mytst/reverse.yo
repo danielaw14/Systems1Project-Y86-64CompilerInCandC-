@@ -1,0 +1,57 @@
+0x000:                      | .pos 0
+0x000: 30f40003000000000000 | irmovq stack, %rsp
+0x00a: 30f70802000000000000 | irmovq list, %rdi
+0x014: 506f0002000000000000 | mrmovq count, %rsi
+0x01e: 802800000000000000   | call reverse_function
+0x027: 00                   | halt
+                            | 
+0x028:                      | reverse_function:
+0x028: 30f80800000000000000 | irmovq 8, %r8
+0x032: 30f90100000000000000 | irmovq 1, %r9
+0x03c: 206a                 | rrmovq %rsi, %r10
+0x03e: 619a                 | subq %r9, %r10
+0x040: 207e                 | rrmovq %rdi, %r14
+                            | 
+0x042:                      | calculate_address:
+0x042: 715800000000000000   | jle address_calculated
+0x04b: 608e                 | addq %r8, %r14
+0x04d: 619a                 | subq %r9, %r10
+0x04f: 704200000000000000   | jmp calculate_address
+                            | 
+0x058:                      | address_calculated:
+0x058: 20e8                 | rrmovq %r14, %r8
+0x05a: 30f70802000000000000 | irmovq list, %rdi
+                            | 
+0x064:                      | reverse_loop:
+0x064: 207a                 | rrmovq %rdi, %r10        
+0x066: 618a                 | subq %r8, %r10            
+0x068: 75b000000000000000   | jge reverse_done                
+                            | 
+0x071: 50b70000000000000000 | mrmovq (%rdi), %r11
+0x07b: 50c80000000000000000 | mrmovq (%r8), %r12
+0x085: 40c70000000000000000 | rmmovq %r12, (%rdi)      
+0x08f: 40b80000000000000000 | rmmovq %r11, (%r8)        
+                            | 
+0x099: 30fd0800000000000000 | irmovq $8, %r13          
+0x0a3: 60d7                 | addq %r13, %rdi          
+0x0a5: 61d8                 | subq %r13, %r8            
+0x0a7: 706400000000000000   | jmp reverse_loop      
+                            | 
+0x0b0:                      | reverse_done:
+0x0b0: 90                   | ret
+                            | 
+0x200:                      | .pos 0x200
+0x200: 0b00000000000000     | count: .quad 11
+0x208: 0500000000000000     | list: .quad 5
+0x210: 0600000000000000     |        .quad 6
+0x218: 0700000000000000     |        .quad 7
+0x220: 0800000000000000     |        .quad 8
+0x228: 0900000000000000     |        .quad 9
+0x230: 0a00000000000000     |        .quad 10
+0x238: 0b00000000000000     |        .quad 11
+0x240: 0c00000000000000     |        .quad 12
+0x248: 0d00000000000000     |        .quad 13
+0x250: 0e00000000000000     |        .quad 14
+0x258: 0f00000000000000     |        .quad 15
+0x300:                      | .pos 0x300
+0x300: 0000000000000000     | stack: .quad 0

@@ -1,0 +1,173 @@
+   .pos 0
+#initialize %rax to 0
+#initialize another register to the address of the first number
+
+
+#For each number:  
+#Get the number out of memory.
+#Cause the condition codes to be modified based upon value of the number.
+#Add the number to %rax if it is negative.
+#
+#You'll have the same basic code for each of the six numbers since
+#we don't have any loops.
+        irmovq 8, %r14
+        irmovq 0, %rax
+        irmovq 0, %rcx
+        irmovq 0, %r11
+        irmovq 0, %rsp
+        irmovq nums, %rcx
+        nop
+        nop
+        nop
+        mrmovq (%rcx), %r12 
+        nop
+        nop
+        nop
+
+        addq %r11, %r12
+        cmovl %r12, %rsp              
+        nop
+        nop
+        nop
+        addq %rsp, %rax
+        nop
+        nop
+        nop  
+        irmovq 0, %rsp                         
+        addq %r14, %rcx
+        nop
+        nop
+        nop
+        mrmovq (%rcx), %r12  
+        nop
+        nop
+        nop              
+
+        addq %r11, %r12
+        cmovl %r12, %rsp              
+        nop
+        nop
+        nop
+        addq %rsp, %rax
+        nop
+        nop
+        nop  
+        irmovq 0, %rsp                         
+        addq %r14, %rcx
+        nop
+        nop
+        nop
+        mrmovq (%rcx), %r12  
+        nop
+        nop
+        nop              
+
+        addq %r11, %r12
+        cmovl %r12, %rsp              
+        nop
+        nop
+        nop
+        addq %rsp, %rax
+        nop
+        nop
+        nop  
+        irmovq 0, %rsp                         
+        addq %r14, %rcx
+        nop
+        nop
+        nop
+        mrmovq (%rcx), %r12 
+        nop
+        nop
+        nop               
+
+        addq %r11, %r12
+        cmovl %r12, %rsp              
+        nop
+        nop
+        nop
+        addq %rsp, %rax
+        nop
+        nop
+        nop  
+        irmovq 0, %rsp                         
+        addq %r14, %rcx
+        nop
+        nop
+        nop
+        mrmovq (%rcx), %r12  
+        nop
+        nop
+        nop              
+
+        addq %r11, %r12
+        cmovl %r12, %rsp              
+        nop
+        nop
+        nop
+        addq %rsp, %rax
+        nop
+        nop
+        nop  
+        irmovq 0, %rsp                         
+        addq %r14, %rcx
+        nop
+        nop
+        nop
+        mrmovq (%rcx), %r12
+        nop
+        nop
+        nop               
+
+        addq %r11, %r12
+        cmovl %r12, %rsp              
+        nop
+        nop
+        nop
+        addq %rsp, %rax
+        nop
+        nop
+        nop  
+        irmovq 0, %rsp                         
+        addq %r14, %rcx
+        nop
+        nop
+        nop
+        mrmovq (%rcx), %r12 
+        nop
+        nop
+        nop               
+
+        addq %r11, %r12
+        cmovl %r12, %rsp              
+        nop
+        nop
+        nop
+        addq %rsp, %rax
+        nop
+        nop
+        nop  
+        irmovq 0, %rsp                         
+        addq %r14, %rcx
+        nop
+        nop
+        nop
+        mrmovq (%rcx), %r12                
+
+
+
+
+
+#finally store %rax in memory location result
+       irmovq result, %r13 
+       rmmovq %rax, (%r13)
+#
+        halt
+        .align 8
+result: .quad 0     #should be -30 = 0xffffffffffffffe2 at end
+nums:   .quad 11
+        .quad -23
+        .quad 0
+        .quad 15
+        .quad -3
+        .quad -4

@@ -1,0 +1,57 @@
+.pos 0
+irmovq stack, %rsp
+irmovq list, %rdi
+mrmovq count, %rsi
+call reverse_function
+halt
+
+reverse_function:
+irmovq 8, %r8
+irmovq 1, %r9
+rrmovq %rsi, %r10
+subq %r9, %r10
+rrmovq %rdi, %r14
+
+calculate_address:
+jle address_calculated
+addq %r8, %r14
+subq %r9, %r10
+jmp calculate_address
+
+address_calculated:
+rrmovq %r14, %r8
+irmovq list, %rdi
+
+reverse_loop:
+rrmovq %rdi, %r10        
+subq %r8, %r10            
+jge reverse_done                
+
+mrmovq (%rdi), %r11
+mrmovq (%r8), %r12
+rmmovq %r12, (%rdi)      
+rmmovq %r11, (%r8)        
+
+irmovq $8, %r13          
+addq %r13, %rdi          
+subq %r13, %r8            
+jmp reverse_loop      
+
+reverse_done:
+ret
+
+.pos 0x200
+count: .quad 11
+list: .quad 5
+       .quad 6
+       .quad 7
+       .quad 8
+       .quad 9
+       .quad 10
+       .quad 11
+       .quad 12
+       .quad 13
+       .quad 14
+       .quad 15
+.pos 0x300
+stack: .quad 0
